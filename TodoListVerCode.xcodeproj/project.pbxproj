@@ -65,9 +65,7 @@
 				63A682C32A963C92006D03E0 /* Models */,
 				63A682C52A963CB0006D03E0 /* Views */,
 				63A682C62A963CBA006D03E0 /* Controllers */,
-				63A682B32A963844006D03E0 /* Main.storyboard */,
 				63A682B62A963845006D03E0 /* Assets.xcassets */,
-				63A682B82A963845006D03E0 /* LaunchScreen.storyboard */,
 				63A682BB2A963845006D03E0 /* Info.plist */,
 			);
 			path = TodoListVerCode;
@@ -92,6 +90,8 @@
 		63A682C52A963CB0006D03E0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				63A682B32A963844006D03E0 /* Main.storyboard */,
+				63A682B82A963845006D03E0 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";

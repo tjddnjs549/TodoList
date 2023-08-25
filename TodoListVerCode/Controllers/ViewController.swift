@@ -13,10 +13,10 @@ final class ViewController: UIViewController {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 5
         button.clipsToBounds = true //둥글게
-        button.layer.borderWidth = 3 //테두리 설정
-        button.layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        button.setTitle("할일 확인하기", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.layer.borderWidth = 2 //테두리 설정
+        button.layer.borderColor =  CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
+        button.setTitle("할 일 확인하기", for: .normal)
+        button.setTitleColor(.systemOrange, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         //button.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -29,10 +29,10 @@ final class ViewController: UIViewController {
         button.backgroundColor = .clear
         button.layer.cornerRadius = 5
         button.clipsToBounds = true //둥글게
-        button.layer.borderWidth = 3 //테두리 설정
-        button.layer.borderColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-        button.setTitle("완료한일 보기", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.layer.borderWidth = 2 //테두리 설정
+        button.layer.borderColor = CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
+        button.setTitle("완료한 일 보기", for: .normal)
+        button.setTitleColor(.systemOrange, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         //button.addTarget(self, action: #selector(successButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -60,13 +60,12 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         makeUI()
         setupNaviBar()
+        
     }
 
     private func setupNaviBar() {
-        
         self.title = "Main"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
     }

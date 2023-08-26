@@ -23,14 +23,19 @@ final class TodoTableViewController: UIViewController {
         
         makeUI()
         
-        //tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "MovieCell")
+        tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: "TodoCell")
     }
     func navBarSetting() {
         self.title = "Table"
         
-       //let updateButton = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(updateButtonTapped))
+        let plusButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(plusButtonTapped))
+        navigationItem.rightBarButtonItem = plusButton
     }
     
+    @objc func plusButtonTapped() {
+        
+        
+    }
     func makeUI() {
         view.addSubview(tableView)
         
@@ -45,17 +50,4 @@ final class TodoTableViewController: UIViewController {
 
 }
 
-//extension TodoTableViewController: UITableViewDataSource {
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
-//}
 
-extension TodoTableViewController: UITableViewDelegate {
-    
-}

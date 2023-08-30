@@ -9,19 +9,29 @@ import UIKit
 
 final class TodoTableViewCell: UITableViewCell {
     
-    private let contentLabel: UILabel = {
+    //MARK: - 멤버 저장속성 구현
+    // 멤버가 변할때마다 자동으로 업데이트 되도록 구현 didSet(속성 감시자) ⭐️
+    var todo: Todo? {
+        didSet {
+            guard let todo = todo else { return }
+            //contentLabel.text = todo.content
+            dateLabel.text = todo.dateString
+        }
+    }
+    
+    let contentLabel: UILabel = {
         let ctn = UILabel()
-        ctn.textColor = .systemOrange
+        ctn.textColor = .black
         ctn.font = UIFont.boldSystemFont(ofSize: 16)
-        //ctn.translatesAutoresizingMaskIntoConstraints = false
+        ctn.translatesAutoresizingMaskIntoConstraints = false
         return ctn
     }()
     
-    private let dateLabel: UILabel = {
+    let dateLabel: UILabel = {
         let date = UILabel()
-        date.textColor = .systemOrange
+        date.textColor = .black
         date.font = UIFont.systemFont(ofSize: 14)
-        //date.translatesAutoresizingMaskIntoConstraints = false
+        date.translatesAutoresizingMaskIntoConstraints = false
         return date
     }()
     
@@ -37,18 +47,46 @@ final class TodoTableViewCell: UITableViewCell {
     
     
     lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [contentLabel, dateLabel]) // 스택에 만든 프로퍼티(버튼이나 텍스트필드 등) 추가
-        stack.spacing = 16 // 간격
+        let stack = UIStackView() // 스택에 만든 프로퍼티(버튼이나 텍스트필드 등) 추가
+        stack.spacing = 10 // 간격
         stack.axis = .vertical // 수평으로 할지 수직으로 할지
-        stack.distribution = .fillEqually // 분배
+        stack.distribution = .fill // 분배
         stack.alignment = .fill //꽉채울지
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
+    @objc func onClickSwitch(sender: Any) {
+        guard let todo else { return }
+        if switchButton.isOn {
+            textLabel?.text = nil
+            textLabel?.attributedText = todo.content?.strikeThrough()
+            TodoManager.completedTodo(todo: todo, isCompleted: true)
+        } else {
+            textLabel?.attributedText = nil
+            textLabel?.text = todo.content
+            TodoManager.completedTodo(todo: todo, isCompleted: false)
+        }
+    }
+    
+    func setTodo(_ _todo: Todo) {
+        todo = _todo
+        guard let todo else { return }
+        if todo.isCompleted {
+            textLabel?.text = nil
+            textLabel?.attributedText = todo.content!.strikeThrough()
+        } else {
+            textLabel?.attributedText = nil
+            textLabel?.text = todo.content
+        }
+        switchButton.isOn = todo.isCompleted
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         makeUI()
+        stackViewMakeUI()
+        switchViewMakeUI()
     }
     
     
@@ -57,50 +95,35 @@ final class TodoTableViewCell: UITableViewCell {
     }
     
     func makeUI() {
-        stackViewMakeUI()
-        switchViewMakeUI()
-        
+        stackView.addArrangedSubview(contentLabel)
+        stackView.addArrangedSubview(dateLabel)
     }
     
     func stackViewMakeUI() {
-        self.contentView.addSubview(contentLabel)
-        
-        stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
+        contentView.addSubview(stackView)
+        stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
         stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 10).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
     }
     
     func switchViewMakeUI() {
-        self.contentView.addSubview(switchButton)
-        
+        contentView.addSubview(switchButton)
         NSLayoutConstraint.activate([
-            switchButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 10),
-            switchButton.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10),
-            switchButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 10),
-            switchButton.widthAnchor.constraint(equalToConstant: 40)
+            switchButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            switchButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
         ])
-      
-        
-        
-        
-    }
-  
-    @objc func onClickSwitch(sender: UISwitch) {
-        let alert = UIAlertController(title: "완료 메세지", message: "이 일을 완료하셨습니까?", preferredStyle: .alert)
-        // UIAlertController를 통해 alert 창을 만듬/ preferredStyle: alert창이 어떻게 나오는지 설정
-        let success = UIAlertAction(title: "확인", style: .default) { action in
-            print("확인 버튼이 눌렀습니다.")
-            self.switchButton.isOn = true
-            self.contentLabel.attributedText = self.contentLabel.text?.strikeThrough()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel) { action in
-            print("취소 버튼이 눌렀습니다.")
-        }
-        alert.addAction(success) //addSubview랑 같은 것
-        alert.addAction(cancel)
-        //present(alert, animated: true, completion: nil) // 보여지게 함
     }
     
-    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
 }
 

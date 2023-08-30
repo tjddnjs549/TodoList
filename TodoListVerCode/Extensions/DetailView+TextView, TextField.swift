@@ -7,12 +7,6 @@
 
 import UIKit
 
-
-extension DetailView: UITextFieldDelegate {
-    
-    
-}
-
 extension DetailView: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {

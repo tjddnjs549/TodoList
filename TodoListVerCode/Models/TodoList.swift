@@ -7,10 +7,24 @@
 
 import UIKit
 
-
-struct Todo {
+enum TodoCategory: String, Codable, CaseIterable {
+    case none
+    case work
+    case life
+    
+    func toIndex() -> Int {
+        Self.allCases.firstIndex(of: self) ?? 0
+    }
+    static func category(index: Int) -> Self? {
+        Self.allCases.indices ~= index ? Self.allCases[index] : nil
+    }
+}
+struct Todo: Codable {
+    var id: Int
+    var category: TodoCategory
     var content: String?
-    private let date: Date = Date()
+    var isCompleted: Bool
+    let date: Date
     
     
     var dateString: String? {

@@ -9,34 +9,34 @@ import UIKit
 final class ViewController: UIViewController {
 
     private var checkToDoListButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true //둥글게
-        button.layer.borderWidth = 2 //테두리 설정
-        button.layer.borderColor =  CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
-        button.setTitle("할 일 확인하기", for: .normal)
-        button.setTitleColor(.systemOrange, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        //button.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        let checkBtn = UIButton(type: .custom)
+        checkBtn.backgroundColor = .clear
+        checkBtn.layer.cornerRadius = 5
+        checkBtn.clipsToBounds = true //둥글게
+        checkBtn.layer.borderWidth = 2 //테두리 설정
+        checkBtn.layer.borderColor =  CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
+        checkBtn.setTitle("할 일 확인하기", for: .normal)
+        checkBtn.setTitleColor(.systemOrange, for: .normal)
+        checkBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        checkBtn.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+        checkBtn.translatesAutoresizingMaskIntoConstraints = false
+        return checkBtn
     }()
     
     
     private var successToDoListButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 5
-        button.clipsToBounds = true //둥글게
-        button.layer.borderWidth = 2 //테두리 설정
-        button.layer.borderColor = CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
-        button.setTitle("완료한 일 보기", for: .normal)
-        button.setTitleColor(.systemOrange, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        //button.addTarget(self, action: #selector(successButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        let successBtn = UIButton(type: .custom)
+        successBtn.backgroundColor = .clear
+        successBtn.layer.cornerRadius = 5
+        successBtn.clipsToBounds = true //둥글게
+        successBtn.layer.borderWidth = 2 //테두리 설정
+        successBtn.layer.borderColor = CGColor(red: 0.98, green: 0.52, blue: 0.00, alpha: 1.00)
+        successBtn.setTitle("완료한 일 보기", for: .normal)
+        successBtn.setTitleColor(.systemOrange, for: .normal)
+        successBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        successBtn.addTarget(self, action: #selector(successButtonTapped), for: .touchUpInside)
+        successBtn.translatesAutoresizingMaskIntoConstraints = false
+        return successBtn
     }()
     
     private var homeImage: UIImageView = {
@@ -67,8 +67,18 @@ final class ViewController: UIViewController {
 
     private func setupNaviBar() {
         self.title = "Main"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
     }
+    
+    @objc func checkButtonTapped() {
+        let TodoListPage = TodoTableViewController()
+        self.navigationController?.pushViewController(TodoListPage, animated: true)
+    }
+    
+    @objc func successButtonTapped() {
+        let TodoListPage = TodoTableViewController()
+        self.navigationController?.pushViewController(TodoListPage, animated: true)
+    }
+    
     
     private func makeUI() {
         view.backgroundColor = .white

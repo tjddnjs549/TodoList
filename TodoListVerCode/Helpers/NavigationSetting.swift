@@ -15,18 +15,16 @@ class NavigationSetting: UIViewController {
         let navigationBarAppearance = UINavigationBarAppearance()
         
         
-        navigationBarAppearance.backgroundColor = UIColor.white //배경색 조정
-        UINavigationBar.appearance().tintColor = UIColor.systemOrange //아이템색 변경
+        navigationBarAppearance.backgroundColor = UIColor.white
+        UINavigationBar.appearance().tintColor = UIColor.systemOrange
         
-        navigationBarAppearance.shadowColor = .none //아래 테두리 없애기
-        //navigationBarAppearance.configureWithOpaqueBackground() //불투명색으로
-        //navigationBarAppearance.configureWithTransparentBackground() // 투명으로
+        navigationBarAppearance.shadowColor = .none
         
         navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         
-        //navigationController?.navigationBar.isTranslucent = false //기본값인 반투명을 false
-        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance //scrollEdge로 만듬 -> 스크롤하기 전 적용
-        UINavigationBar.appearance().standardAppearance = navigationBarAppearance //스크롤 한 후 적용
+
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
     }
 }

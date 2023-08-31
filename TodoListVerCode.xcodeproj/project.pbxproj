@@ -14,6 +14,8 @@
 		630D60AC2A9A049000C3788A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AB2A9A049000C3788A /* DetailView.swift */; };
 		630D60AE2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AD2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift */; };
 		630D60B02A9A0B1B00C3788A /* DetailView+TextView, TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AF2A9A0B1B00C3788A /* DetailView+TextView, TextField.swift */; };
+		6347D52A2AA066EB0039DFBE /* TodoCompletedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347D5292AA066EB0039DFBE /* TodoCompletedTableViewController.swift */; };
+		6347D52C2AA068080039DFBE /* CompletedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347D52B2AA068080039DFBE /* CompletedTableViewCell.swift */; };
 		6374E0EA2A990BAB0091F4D2 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374E0E92A990BAB0091F4D2 /* TodoTableViewController.swift */; };
 		6374E0EC2A99130D0091F4D2 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374E0EB2A99130D0091F4D2 /* TodoTableViewCell.swift */; };
 		6377DF6E2A974A2900451753 /* ViewController+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6377DF6D2A974A2900451753 /* ViewController+UIImageView.swift */; };
@@ -35,6 +37,8 @@
 		630D60AB2A9A049000C3788A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		630D60AD2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoTableViewCon+TableView, search.swift"; sourceTree = "<group>"; };
 		630D60AF2A9A0B1B00C3788A /* DetailView+TextView, TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailView+TextView, TextField.swift"; sourceTree = "<group>"; };
+		6347D5292AA066EB0039DFBE /* TodoCompletedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCompletedTableViewController.swift; sourceTree = "<group>"; };
+		6347D52B2AA068080039DFBE /* CompletedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTableViewCell.swift; sourceTree = "<group>"; };
 		6374E0E92A990BAB0091F4D2 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
 		6374E0EB2A99130D0091F4D2 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		6377DF6D2A974A2900451753 /* ViewController+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+UIImageView.swift"; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				63A682B82A963845006D03E0 /* LaunchScreen.storyboard */,
 				6374E0EB2A99130D0091F4D2 /* TodoTableViewCell.swift */,
 				630D60AB2A9A049000C3788A /* DetailView.swift */,
+				6347D52B2AA068080039DFBE /* CompletedTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 				63A682B12A963844006D03E0 /* ViewController.swift */,
 				6374E0E92A990BAB0091F4D2 /* TodoTableViewController.swift */,
 				630D60A92A9A045D00C3788A /* DetailViewController.swift */,
+				6347D5292AA066EB0039DFBE /* TodoCompletedTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -225,9 +231,11 @@
 			files = (
 				630D60AA2A9A045D00C3788A /* DetailViewController.swift in Sources */,
 				630D60AC2A9A049000C3788A /* DetailView.swift in Sources */,
+				6347D52A2AA066EB0039DFBE /* TodoCompletedTableViewController.swift in Sources */,
 				630D60A62A99FDF600C3788A /* TodoList.swift in Sources */,
 				6374E0EC2A99130D0091F4D2 /* TodoTableViewCell.swift in Sources */,
 				63A682B22A963844006D03E0 /* ViewController.swift in Sources */,
+				6347D52C2AA068080039DFBE /* CompletedTableViewCell.swift in Sources */,
 				6374E0EA2A990BAB0091F4D2 /* TodoTableViewController.swift in Sources */,
 				630D60AE2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift in Sources */,
 				630D60B02A9A0B1B00C3788A /* DetailView+TextView, TextField.swift in Sources */,

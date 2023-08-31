@@ -9,9 +9,7 @@ import UIKit
 
 class DetailView: UIView {
     
-    
-    //MARK: - 멤버 저장속성 구현
-    // 멤버 데이터가 바뀌면 ===> didSet(속성감시자) 실행
+    // 멤버 데이터가 바뀌면
     var todo: Todo? {
         didSet {
             guard var todo = todo else {
@@ -53,19 +51,12 @@ class DetailView: UIView {
     
     var stackViewTopConstraint: NSLayoutConstraint!
     
-    // 오토레이아웃 업데이트
     override func updateConstraints() {
         stackViewMakeUI()
         super.updateConstraints()
     }
     
-    
-    
-    //MARK: - 노티피케이션 셋팅
-    
     func setupNotification() {
-        // 노티피케이션의 등록 ⭐️
-        // (OS차원에서 어떤 노티피케이션이 발생하는지 이미 정해져 있음)
         NotificationCenter.default.addObserver(self, selector: #selector(moveUpAction), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(moveDownAction), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -73,7 +64,6 @@ class DetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentTextView.delegate = self
-        //keywordTextField.delegate = self
         setupNotification()
         stackViewMakeUI()
         backgroundColor = .white
@@ -98,9 +88,6 @@ class DetailView: UIView {
         
     }
     
-    
-    //MARK: - 키보드가 나타날때와 내려갈때의 애니메이션 셋팅
-    
     @objc func moveUpAction() {
         stackViewTopConstraint.constant = 10
         UIView.animate(withDuration: 0.2) {
@@ -119,11 +106,8 @@ class DetailView: UIView {
         self.endEditing(true)
         
     }
-    
-    //MARK: - 소멸자 구현
-    
+
     deinit {
-        // 노티피케이션의 등록 해제 (해제안하면 계속 등록될 수 있음) ⭐️
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }

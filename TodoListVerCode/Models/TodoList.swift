@@ -34,8 +34,7 @@ struct Todo: Codable {
             
             formatter.dateStyle = .medium
             formatter.timeStyle = .full
-            
-            // 개발자가 직접 설정한
+    
             formatter.dateFormat = "EEEE"
             
             return formatter.string(from: date)

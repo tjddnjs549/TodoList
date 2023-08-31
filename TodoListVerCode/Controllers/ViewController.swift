@@ -7,7 +7,10 @@
 import UIKit
 
 final class ViewController: UIViewController {
-
+    
+    
+    static let urlString = "https://spartacodingclub.kr/css/images/scc-og.jpg"
+    
     private var checkToDoListButton: UIButton = {
         let checkBtn = UIButton(type: .custom)
         checkBtn.backgroundColor = .clear
@@ -39,9 +42,9 @@ final class ViewController: UIViewController {
         return successBtn
     }()
     
-    private var homeImage: UIImageView = {
+    lazy var homeImage: UIImageView = {
         let image = UIImageView()
-        let url = URL(string: "https://spartacodingclub.kr/css/images/scc-og.jpg")
+        let url = URL(string: Self.urlString)
         image.load(url: url!)
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -64,7 +67,7 @@ final class ViewController: UIViewController {
         setupNaviBar()
         
     }
-
+    
     private func setupNaviBar() {
         self.title = "Main"
     }
@@ -75,8 +78,8 @@ final class ViewController: UIViewController {
     }
     
     @objc func successButtonTapped() {
-        let TodoListPage = TodoTableViewController()
-        self.navigationController?.pushViewController(TodoListPage, animated: true)
+        let TodoCompletedPage = TodoCompletedTableViewController()
+        self.navigationController?.pushViewController(TodoCompletedPage, animated: true)
     }
     
     

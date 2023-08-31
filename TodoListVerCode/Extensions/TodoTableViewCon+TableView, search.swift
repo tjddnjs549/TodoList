@@ -9,7 +9,7 @@ import UIKit
 
 
 extension TodoTableViewController: UITableViewDataSource {
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(#function)
         if isFiltering() {
@@ -27,30 +27,56 @@ extension TodoTableViewController: UITableViewDataSource {
         }
     }
     
-   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       print(#function)
-     
-       let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
-       
-       if isFiltering() {
-           cell.contentLabel.text = filteredTodoList[indexPath.row].content
-       } else {
-           if indexPath.section == TodoCategory.none.toIndex() {
-               cell.setTodo(TodoManager.filterCategory(category: .none)[indexPath.row])
-           } else if indexPath.section == TodoCategory.work.toIndex() {
-               cell.setTodo(TodoManager.filterCategory(category: .work)[indexPath.row])
-           } else if indexPath.section == TodoCategory.life.toIndex() {
-               cell.setTodo(TodoManager.filterCategory(category: .life)[indexPath.row])
-           } else {
-               return UITableViewCell()
-           }
-       }
-       print(TodoManager.getTodosList())
-       return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(#function)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath) as! TodoTableViewCell
+        
+        if isFiltering() {
+            cell.contentLabel.text = filteredTodoList[indexPath.row].content
+        } else {
+            if indexPath.section == TodoCategory.none.toIndex() {
+                cell.setTodo(TodoManager.filterCategory(category: .none)[indexPath.row])
+            } else if indexPath.section == TodoCategory.work.toIndex() {
+                cell.setTodo(TodoManager.filterCategory(category: .work)[indexPath.row])
+            } else if indexPath.section == TodoCategory.life.toIndex() {
+                cell.setTodo(TodoManager.filterCategory(category: .life)[indexPath.row])
+            } else {
+                return UITableViewCell()
+            }
+        }
+        print(TodoManager.getTodosList())
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = .clear
+        if !isFiltering() {
+            let label = UILabel(frame: CGRect(x: 8, y: 20, width: tableView.frame.size.width , height: 20))
+            label.textColor = UIColor.systemOrange
+            label.font = UIFont.boldSystemFont(ofSize: 12)
+            label.textAlignment = .left
+            label.text = "------------------------------------------------------------------"
+            
+            footerView.addSubview(label)
+            return footerView
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if isFiltering() {
+            return 0
+        } else {
+            let numberOfRows = tableView.numberOfRows(inSection: section)
+            return numberOfRows == 0 ? 0 : 24
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return isFiltering() ? 1 : TodoCategory.allCases.count
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if isFiltering() {
             return "검색 결과"
@@ -64,18 +90,16 @@ extension TodoTableViewController: UITableViewDataSource {
 
 extension TodoTableViewController: UITableViewDelegate {
     
-    // 셀이 선택이 되었을때 어떤 동작을 할 것인지 뷰컨트롤러에게 물어봄
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
-        // 다음화면으로 이동
+        
         let detailVC = DetailViewController()
-        //let selectedTodo = TodoManager.getTodosList()[indexPath.row]
-        // 다음 화면에 멤버를 전달
+        
         let selectedTodo = isFiltering() ? filteredTodoList[indexPath.row] : TodoManager.filterCategory(category: TodoCategory.category(index: indexPath.section)!)[indexPath.row]
-
+        
         detailVC.todo = selectedTodo
         print(selectedTodo)
-        // 화면이동
+        
         navigationController?.pushViewController(detailVC, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -84,7 +108,6 @@ extension TodoTableViewController: UITableViewDelegate {
         return UITableView.automaticDimension
     }
     
-    //삭제 스와이프
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         var row = TodoManager.getTodosList()[indexPath.row]
@@ -120,33 +143,33 @@ extension TodoTableViewController: UITableViewDelegate {
 extension TodoTableViewController: UISearchBarDelegate, UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
-               // 검색 텍스트가 비어있으면 모든 데이터 표시
-               if searchText.isEmpty {
-                   filteredTodoList = TodoManager.getTodosList()
-               } else {
-                   // 검색 텍스트와 일치하는 데이터만 필터링
-                   filteredTodoList = TodoManager.getTodosList().filter { $0.content!.lowercased().contains(searchText)}.sorted {$0.date < $1.date}
-               }
+        
+        if searchText.isEmpty {
+            filteredTodoList = TodoManager.getTodosList()
+        } else {
+          
+            filteredTodoList = TodoManager.getTodosList().filter { $0.content!.lowercased().contains(searchText)}.sorted {$0.date < $1.date}
+        }
         tableView.reloadData()
         print(filteredTodoList)
     }
     
-    //검색 버튼(키보드 리턴키)을 눌렀을 때 실행
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(true, animated: true)
     }
     
-    //취소 버튼 눌렀을 때 실행
+   
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
     }
     
-    //서치바에 커서 깜빡이기 시작할 때
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         updateSearchResults(for: searchController)
     }

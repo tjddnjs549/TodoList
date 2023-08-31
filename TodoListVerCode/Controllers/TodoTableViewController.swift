@@ -2,11 +2,12 @@
 //  TodoListVerCode
 //
 //  Created by 박성원 on 2023/08/26.
+//
 
 import UIKit
 
 final class TodoTableViewController: UIViewController {
-
+    
     let tableView: UITableView = {
         let tbView = UITableView()
         tbView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +25,6 @@ final class TodoTableViewController: UIViewController {
     }()
     
     var filteredTodoList: [Todo] = []
-    //var searchText: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +33,15 @@ final class TodoTableViewController: UIViewController {
         tableView.delegate = self
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
-
+        
         makeUI()
         navBarSetting()
-        tableView.rowHeight = 70
         tableView.register(TodoTableViewCell.self, forCellReuseIdentifier: "TodoCell")
+        tableView.reloadData()
     }
     
-    // 델리게이트가 아닌 방식으로 구현할때는 화면 리프레시⭐️
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // 뷰가 다시 나타날때, 테이블뷰를 리로드
         tableView.reloadData()
     }
     
@@ -83,10 +81,10 @@ final class TodoTableViewController: UIViewController {
         view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 70),
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
     func searchBarIsEmpty() -> Bool {

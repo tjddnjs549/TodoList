@@ -48,7 +48,7 @@ final class TodoTableViewCell: UITableViewCell {
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView() // 스택에 만든 프로퍼티(버튼이나 텍스트필드 등) 추가
-        stack.spacing = 10 // 간격
+        stack.spacing = 1 // 간격
         stack.axis = .vertical // 수평으로 할지 수직으로 할지
         stack.distribution = .fill // 분배
         stack.alignment = .fill //꽉채울지
@@ -59,12 +59,13 @@ final class TodoTableViewCell: UITableViewCell {
     @objc func onClickSwitch(sender: Any) {
         guard let todo else { return }
         if switchButton.isOn {
-            textLabel?.text = nil
-            textLabel?.attributedText = todo.content?.strikeThrough()
+            contentLabel.textColor = .lightGray
+            contentLabel.attributedText = todo.content?.strikeThrough()
             TodoManager.completedTodo(todo: todo, isCompleted: true)
         } else {
-            textLabel?.attributedText = nil
-            textLabel?.text = todo.content
+            contentLabel.textColor = .black
+            contentLabel.attributedText = nil
+            contentLabel.text = todo.content
             TodoManager.completedTodo(todo: todo, isCompleted: false)
         }
     }
@@ -73,11 +74,10 @@ final class TodoTableViewCell: UITableViewCell {
         todo = _todo
         guard let todo else { return }
         if todo.isCompleted {
-            textLabel?.text = nil
-            textLabel?.attributedText = todo.content!.strikeThrough()
+            contentLabel.attributedText = todo.content!.strikeThrough()
         } else {
-            textLabel?.attributedText = nil
-            textLabel?.text = todo.content
+            contentLabel.attributedText = nil
+            contentLabel.text = todo.content
         }
         switchButton.isOn = todo.isCompleted
     }

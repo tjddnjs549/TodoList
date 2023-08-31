@@ -7,18 +7,33 @@ import UIKit
 
 final class TodoTableViewController: UIViewController {
 
-    private let tableView: UITableView = {
+    let tableView: UITableView = {
         let tbView = UITableView()
         tbView.translatesAutoresizingMaskIntoConstraints = false
         return tbView
     }()
+    
+    let searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "검색"
+        searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+        searchController.searchBar.tintColor = .systemOrange
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        return searchController
+    }()
+    
+    var filteredTodoList: [Todo] = []
+    //var searchText: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        
+        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
+
         makeUI()
         navBarSetting()
         tableView.rowHeight = 70
@@ -34,10 +49,14 @@ final class TodoTableViewController: UIViewController {
     
     func navBarSetting() {
         self.title = "Table"
-        
         let plusButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(plusButtonTapped))
         navigationItem.rightBarButtonItem = plusButton
+        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.largeTitleDisplayMode = .always
     }
+    
     
     @objc func plusButtonTapped() {
         let defaultCategory = TodoCategory.none
@@ -47,11 +66,10 @@ final class TodoTableViewController: UIViewController {
         alertController.addTextField { textField in
             textField.placeholder = "할 일을 입력하세요"
         }
-        let addAction = UIAlertAction(title: "추가",
-                                      style: .default) { [weak self] _ in
+        let addAction = UIAlertAction(title: "추가", style: .default) { [weak self] _ in
             guard let self else { return }
             if let title = alertController.textFields?.first?.text, !title.isEmpty {
-                let newTodo = Todo(id: (TodoManager.getTodosList().last?.id ?? -1) + 1, category: defaultCategory,content: title ,isCompleted: false, date: Date())
+                let newTodo = Todo(id: (TodoManager.getTodosList().last?.id ?? -1)+1, category: defaultCategory,content: title ,isCompleted: false, date: Date())
                 TodoManager.addTodoList(newTodo)
                 self.tableView.insertRows(at: [IndexPath(row: TodoManager.filterCategory(category: defaultCategory).count-1, section: defaultCategory.toIndex())], with: .automatic)
             }
@@ -71,8 +89,13 @@ final class TodoTableViewController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
     }
-
-
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
 }
 
 

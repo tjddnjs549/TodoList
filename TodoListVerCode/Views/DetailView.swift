@@ -117,6 +117,7 @@ class DetailView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.endEditing(true)
+        
     }
     
     //MARK: - 소멸자 구현

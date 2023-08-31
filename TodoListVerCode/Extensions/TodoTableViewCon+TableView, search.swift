@@ -144,7 +144,7 @@ extension TodoTableViewController: UISearchBarDelegate, UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
         
-        if searchText.isEmpty {
+        if !isFiltering() {
             filteredTodoList = TodoManager.getTodosList()
         } else {
           

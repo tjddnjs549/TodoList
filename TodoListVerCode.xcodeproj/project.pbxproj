@@ -14,6 +14,7 @@
 		630D60AC2A9A049000C3788A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AB2A9A049000C3788A /* DetailView.swift */; };
 		630D60AE2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AD2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift */; };
 		630D60B02A9A0B1B00C3788A /* DetailView+TextView, TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630D60AF2A9A0B1B00C3788A /* DetailView+TextView, TextField.swift */; };
+		63185DF42AA0CC6C00E124FD /* CompletedTableViewConreoller + TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63185DF32AA0CC6C00E124FD /* CompletedTableViewConreoller + TableView.swift */; };
 		6347D52A2AA066EB0039DFBE /* TodoCompletedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347D5292AA066EB0039DFBE /* TodoCompletedTableViewController.swift */; };
 		6347D52C2AA068080039DFBE /* CompletedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6347D52B2AA068080039DFBE /* CompletedTableViewCell.swift */; };
 		6374E0EA2A990BAB0091F4D2 /* TodoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6374E0E92A990BAB0091F4D2 /* TodoTableViewController.swift */; };
@@ -37,6 +38,7 @@
 		630D60AB2A9A049000C3788A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		630D60AD2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodoTableViewCon+TableView, search.swift"; sourceTree = "<group>"; };
 		630D60AF2A9A0B1B00C3788A /* DetailView+TextView, TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DetailView+TextView, TextField.swift"; sourceTree = "<group>"; };
+		63185DF32AA0CC6C00E124FD /* CompletedTableViewConreoller + TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompletedTableViewConreoller + TableView.swift"; sourceTree = "<group>"; };
 		6347D5292AA066EB0039DFBE /* TodoCompletedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCompletedTableViewController.swift; sourceTree = "<group>"; };
 		6347D52B2AA068080039DFBE /* CompletedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedTableViewCell.swift; sourceTree = "<group>"; };
 		6374E0E92A990BAB0091F4D2 /* TodoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				630D60A32A99FCD800C3788A /* TodoTableViewCell+String.swift */,
 				630D60AD2A9A0ACC00C3788A /* TodoTableViewCon+TableView, search.swift */,
 				630D60AF2A9A0B1B00C3788A /* DetailView+TextView, TextField.swift */,
+				63185DF32AA0CC6C00E124FD /* CompletedTableViewConreoller + TableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				6377DF6E2A974A2900451753 /* ViewController+UIImageView.swift in Sources */,
 				630D60A82A9A00B400C3788A /* TodoManager.swift in Sources */,
 				630D60A42A99FCD800C3788A /* TodoTableViewCell+String.swift in Sources */,
+				63185DF42AA0CC6C00E124FD /* CompletedTableViewConreoller + TableView.swift in Sources */,
 				63A682AE2A963844006D03E0 /* AppDelegate.swift in Sources */,
 				63BCF4BE2A98FB3700A98FD1 /* NavigationSetting.swift in Sources */,
 				63A682B02A963844006D03E0 /* SceneDelegate.swift in Sources */,

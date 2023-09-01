@@ -22,14 +22,14 @@ class CompletedTableViewCell: UITableViewCell {
     let dateLabel: UILabel = {
         let date = UILabel()
         date.textColor = .black
-        date.font = UIFont.systemFont(ofSize: 14)
+        date.font = UIFont.systemFont(ofSize: 12)
         date.translatesAutoresizingMaskIntoConstraints = false
         return date
     }()
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
-        stack.spacing = 10
+        stack.spacing = 5
         stack.axis = .vertical
         stack.distribution = .fill
         stack.alignment = .fill
@@ -62,7 +62,7 @@ class CompletedTableViewCell: UITableViewCell {
     
     func stackViewMakeUI() {
         stackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 20).isActive = true
-        stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 20).isActive = true
         stackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20).isActive = true
     }

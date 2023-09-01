@@ -48,19 +48,7 @@ class DetailViewController: UIViewController {
         } else {
             self.title = "수정"
         }
-        
-        let saveButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(saveButtonTapped))
-        navigationItem.rightBarButtonItem = saveButton
     }
-    
-    @objc func saveButtonTapped() {
-        guard let todo, let content = detailView.contentTextView.text, let category = TodoCategory.category(index: detailView.segmentedControl.selectedSegmentIndex) else {return}
-        
-        TodoManager.editCategory(todo: todo, category: category)
-        TodoManager.editContent(todo: todo, content: content)
-        print("수정 완료")
-        self.navigationController?.popViewController(animated: true)
-        print(TodoManager.getTodosList())
-    }
+
 }
 

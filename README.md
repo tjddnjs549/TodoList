@@ -47,7 +47,7 @@
 
 
 ## UI 화면 구성
-<img width="500" alt="스크린샷 2023-09-01 오전 10 39 29" src="https://github.com/tjddnjs549/TodoList/assets/82648421/a25706c7-67a2-4c99-b311-f9e5e3526e27">
+<img width="600" alt="스크린샷 2023-09-01 오전 10 39 29" src="https://github.com/tjddnjs549/TodoList/assets/82648421/a25706c7-67a2-4c99-b311-f9e5e3526e27">
 
 
 ##  추후 구현 목표
